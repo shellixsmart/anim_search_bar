@@ -43,8 +43,8 @@ class AnimSearchBar extends StatefulWidget {
 
     /// The textController cannot be null
     required this.textController,
-    this.suffixIcon = const Icon(Icons.chevron_left),
-    this.prefixIcon = const Icon(Icons.clear),
+    this.suffixIcon = const Icon(Icons.clear),
+    this.prefixIcon = const Icon(Icons.chevron_left),
     this.restIcon = const Icon(Icons.search),
     this.helpText = "Search",
 
