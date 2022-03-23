@@ -25,7 +25,7 @@ class AnimSearchBar extends StatefulWidget {
   final String helpText;
   final int animationDurationInMilli;
   final VoidCallback? onSuffixTap;
-  final VoidCallback? onPrefixTap;
+  final Function(bool isOpen)? onStateChange;
   final Function(String value)? onSubmit;
   final bool rtl;
   final bool autoFocus;
@@ -55,8 +55,8 @@ class AnimSearchBar extends StatefulWidget {
     /// The onSuffixTap can be null
     this.onSuffixTap,
 
-    /// The onPrefixTap can be null
-    this.onPrefixTap,
+    /// The onStateChange can be null
+    this.onStateChange,
 
     /// The onPrefixTap can be null
     this.onSubmit,
@@ -263,7 +263,6 @@ class _AnimSearchBarState extends State<AnimSearchBar>
                 ///prefixIcon is of type Icon
                 icon: toggle == 1 ? widget.prefixIcon : widget.restIcon,
                 onPressed: () {
-                  if (widget.onPrefixTap != null) widget.onPrefixTap!();
                   setState(
                     () {
                       ///if the search bar is closed
@@ -288,6 +287,9 @@ class _AnimSearchBarState extends State<AnimSearchBar>
 
                         ///reverse == close
                         _con.reverse();
+                      }
+                      if (widget.onStateChange != null) {
+                        widget.onStateChange!(toggle == 1);
                       }
                     },
                   );
